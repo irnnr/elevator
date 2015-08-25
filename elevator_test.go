@@ -20,3 +20,17 @@ func TestPickupReturnsNilForFloorUpToMaxFloor(t *testing.T) {
 
 	assert.NoError(t, err)
 }
+
+func TestPickupReturnsNilForFloorAboveOrEqualFirstFloor(t *testing.T) {
+	el := Elevator{Id:int32(1)}
+	err := el.Pickup(1, Up)
+
+	assert.NoError(t, err)
+}
+
+func TestPickupReturnsErrorForFloorBelowFirstFloor(t *testing.T) {
+	el := Elevator{Id:int32(1)}
+	err := el.Pickup(0, Up)
+
+	assert.Error(t, err)
+}

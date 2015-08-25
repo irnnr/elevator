@@ -17,7 +17,7 @@ func (e Elevator) Status() (int32, int32, int32) {
 }
 
 func (e *Elevator) Pickup(floor int32, dir Direction) error {
-	if floor > topFloor {
+	if floor < 1 || floor > topFloor {
 		return errors.New("Floor is above top floor")
 	}
 
