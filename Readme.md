@@ -9,3 +9,5 @@ Set `GOPATH` to the project root directory.
 
 `GOPATH=$(pwd) go build -o dist/elevator && ./dist/elevator`
 
+## Testing
+`GOPATH=$(pwd) go test`
