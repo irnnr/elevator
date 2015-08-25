@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 )
 
 
@@ -27,6 +28,23 @@ func (e *Elevator) Pickup(floor int32, dir Direction) error {
 	return nil
 }
 
-func (e *Elevator) step() {
+func (e *Elevator) Step() {
+	prevFloor := e.CurrentFloor
 
+	switch e.Direction {
+	case Up:
+		e.up()
+	case Down:
+		e.down()
+	}
+
+	fmt.Printf("%d: %d -> %d\n", e.Id, prevFloor, e.CurrentFloor)
+}
+
+func (e *Elevator) up() {
+	e.CurrentFloor++
+}
+
+func (e *Elevator) down() {
+	e.CurrentFloor--
 }
