@@ -2,8 +2,7 @@
 
 ##Installation
 
-Set `GOPATH` to the project root directory. 
-`gpm install` to install the dependencies
+`GOPATH=$(pwd) gpm install`
 
 ##Building and Running the App
 
