@@ -43,7 +43,7 @@ func setGoals() {
 
 func moveElevators() {
 	for i := range elevators {
-		elevators[i].Step()
+		go elevators[i].Step()
 	}
 }
 
