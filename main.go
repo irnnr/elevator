@@ -8,7 +8,7 @@ import (
 
 var elevators []Elevator
 var numElevators = 2
-var topFloor int32
+var topFloor = int32(100)
 
 func initElevators() {
 	elevators = make([]Elevator, 0, numElevators)
@@ -48,7 +48,6 @@ func moveElevators() {
 }
 
 func main() {
-	topFloor = 100
 	rand.Seed(time.Now().UTC().UnixNano())
 
 	initElevators()
