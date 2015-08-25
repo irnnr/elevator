@@ -25,6 +25,8 @@ func (e *Elevator) Pickup(floor int32, dir Direction) error {
 	e.GoalFloor = floor
 	e.Direction = dir
 
+	fmt.Printf("%d new goal: %s from %d\n", e.Id, dir, floor)
+
 	return nil
 }
 
@@ -38,7 +40,7 @@ func (e *Elevator) Step() {
 		e.down()
 	}
 
-	fmt.Printf("%d: %d -> %d\n", e.Id, prevFloor, e.CurrentFloor)
+	fmt.Printf("%d going %s : %d -> %d\n", e.Id, e.Direction, prevFloor, e.CurrentFloor)
 }
 
 func (e *Elevator) up() {
