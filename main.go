@@ -7,7 +7,7 @@ import (
 )
 
 var elevators []Elevator
-var numElevators = 2
+var numElevators = 16
 var topFloor = int32(10)
 
 func initElevators() {
