@@ -24,8 +24,8 @@ func globalStatus() {
 }
 
 func setGoals() {
-	for _, el := range elevators {
-		if !el.IsBusy() {
+	for i := range elevators {
+		if !elevators[i].IsBusy() {
 			// rand.Intn is zero based, ensure new goal is between 1 and topFloor
 			newGoal := rand.Int31n(topFloor - 1) + 1
 
@@ -35,9 +35,15 @@ func setGoals() {
 				newDir = Down
 			}
 
-			el.Pickup(newGoal, newDir)
+			elevators[i].Pickup(newGoal, newDir)
 		}
 
+	}
+}
+
+func moveElevators() {
+	for i := range elevators {
+		elevators[i].Step()
 	}
 }
 
@@ -49,5 +55,11 @@ func main() {
 	globalStatus()
 
 	setGoals()
+
+
+	for {
+		moveElevators()
+		time.Sleep(time.Second)
+	}
 
 }

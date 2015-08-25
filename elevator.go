@@ -34,28 +34,38 @@ func (e *Elevator) Pickup(floor int32, dir Direction) error {
 	e.GoalFloor = floor
 	e.Direction = dir
 
-	fmt.Printf("%d new goal: %s from %d\n", e.Id, dir, floor)
+	fmt.Printf("%d new goal: %s from %d\n", e.Id, e.Direction, e.GoalFloor)
 
 	return nil
 }
 
 func (e *Elevator) Step() {
-	prevFloor := e.CurrentFloor
-
 	switch e.Direction {
 	case Up:
 		e.up()
 	case Down:
 		e.down()
 	}
-
-	fmt.Printf("%d going %s : %d -> %d\n", e.Id, e.Direction, prevFloor, e.CurrentFloor)
 }
 
 func (e *Elevator) up() {
-	e.CurrentFloor++
+	prevFloor := e.CurrentFloor
+
+	if e.CurrentFloor != e.GoalFloor {
+		e.CurrentFloor++
+		fmt.Printf("%d going %s : %d -> %d\n", e.Id, e.Direction, prevFloor, e.CurrentFloor)
+	} else {
+		fmt.Printf("%d is at goal floor %d, not moving\n", e.Id, e.GoalFloor)
+	}
 }
 
 func (e *Elevator) down() {
-	e.CurrentFloor--
+	prevFloor := e.CurrentFloor
+
+	if e.CurrentFloor != e.GoalFloor {
+		e.CurrentFloor--
+		fmt.Printf("%d going %s : %d -> %d\n", e.Id, e.Direction, prevFloor, e.CurrentFloor)
+	} else {
+		fmt.Printf("%d is at goal floor %d, not moving\n", e.Id, e.GoalFloor)
+	}
 }
