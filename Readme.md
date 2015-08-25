@@ -21,6 +21,7 @@
 	* choose a set if order of requests should not matter (better to optimize usage of an elevator)
 	* choose a queue if we want to process requests in the order they come in (easier to implement)
 * randomly trigger new requests and add them to the set of requests
+* re-introduce the direction argument for the Pickup method to allow easier scheduling/picking requests from the 
 * add a sorted list of next stops to an elevator
 * add a maximum capacity for an elevator 
 * when stepping an elevator check the request queue for fitting pickups  
@@ -34,3 +35,4 @@
 * since that would be unrealistic we would have to add a random number of people when reaching a goal floor and keep accepting all request
 	* the elevator will stop, but may not accept any more people if it the number of people wanting to join would exceed the capacity
 	* the request would go back to the pool of waiting requests
+
