@@ -3,6 +3,7 @@ package main
 import "fmt"
 
 var elevators []Elevator
+var floors int32
 
 func initElevators() {
 	elevators = make([]Elevator, 0, 16)
@@ -18,6 +19,8 @@ func globalStatus() {
 }
 
 func main() {
+	floors = 100
+
 	initElevators()
 	globalStatus()
 }
