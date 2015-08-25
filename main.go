@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+	"time"
+)
 
 var elevators []Elevator
 var numElevators = 2
@@ -19,9 +23,31 @@ func globalStatus() {
 	}
 }
 
+func setGoals() {
+	for _, el := range elevators {
+		if !el.IsBusy() {
+			// rand.Intn is zero based, ensure new goal is between 1 and topFloor
+			newGoal := rand.Int31n(topFloor - 1) + 1
+
+			newDir := Up
+			randDown := rand.Intn(1)
+			if randDown == 1 {
+				newDir = Down
+			}
+
+			el.Pickup(newGoal, newDir)
+		}
+
+	}
+}
+
 func main() {
 	topFloor = 100
+	rand.Seed(time.Now().UTC().UnixNano())
 
 	initElevators()
 	globalStatus()
+
+	setGoals()
+
 }
