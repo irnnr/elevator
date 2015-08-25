@@ -34,3 +34,17 @@ func TestPickupReturnsErrorForFloorBelowFirstFloor(t *testing.T) {
 
 	assert.Error(t, err)
 }
+
+func TestStepMovesElevatorOneFloorDownForDirectionDown(t *testing.T) {
+	el := Elevator{1, 100, 90, Down}
+	el.Step()
+
+	assert.Equal(t, 99, el.CurrentFloor)
+}
+
+func TestStepMovesElevatorOneFloorUpForDirectionUp(t *testing.T) {
+	el := Elevator{1, 1, 90, Up}
+	el.Step()
+
+	assert.Equal(t, 2, el.CurrentFloor)
+}
