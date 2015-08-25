@@ -13,7 +13,7 @@ var topFloor int32
 func initElevators() {
 	elevators = make([]Elevator, 0, numElevators)
 	for i := 0; i < numElevators; i++ {
-		elevators = append(elevators, Elevator{ Id:int32(i) })
+		elevators = append(elevators, NewElevator(int32(i)))
 	}
 }
 

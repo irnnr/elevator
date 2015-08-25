@@ -13,6 +13,11 @@ type Elevator struct {
 	Direction Direction
 }
 
+// Creates a new elevator going up from first floor
+func NewElevator(id int32) Elevator {
+	return Elevator{id, 1, 1, Up}
+}
+
 func (e Elevator) Status() (int32, int32, int32) {
 	return e.Id, e.CurrentFloor, e.GoalFloor
 }
