@@ -8,16 +8,15 @@ import (
 func TestPickupSetsNewGoal(t *testing.T) {
 	topFloor = 100
 	el := Elevator{Id:int32(1) }
-	el.Pickup(50, Down)
+	el.Pickup(50)
 
 	assert.EqualValues(t, 50, el.GoalFloor)
-	assert.EqualValues(t, Down, el.Direction)
 }
 
 func TestPickupReturnsErrorForFloorPastMaxFloor(t *testing.T) {
 	topFloor = 100
 	el := Elevator{ Id:int32(1) }
-	err := el.Pickup(1000, Down)
+	err := el.Pickup(1000)
 
 	assert.Error(t, err)
 }
@@ -25,21 +24,21 @@ func TestPickupReturnsErrorForFloorPastMaxFloor(t *testing.T) {
 func TestPickupReturnsNilForFloorUpToMaxFloor(t *testing.T) {
 	topFloor = 100
 	el := Elevator{Id:int32(1)}
-	err := el.Pickup(100, Down)
+	err := el.Pickup(100)
 
 	assert.NoError(t, err)
 }
 
 func TestPickupReturnsNilForFloorAboveOrEqualFirstFloor(t *testing.T) {
 	el := Elevator{Id:int32(1)}
-	err := el.Pickup(1, Up)
+	err := el.Pickup(1)
 
 	assert.NoError(t, err)
 }
 
 func TestPickupReturnsErrorForFloorBelowFirstFloor(t *testing.T) {
 	el := Elevator{Id:int32(1)}
-	err := el.Pickup(0, Up)
+	err := el.Pickup(0)
 
 	assert.Error(t, err)
 }

@@ -26,24 +26,25 @@ func (e Elevator) IsBusy() bool {
 	return (e.CurrentFloor != e.GoalFloor)
 }
 
-func (e *Elevator) Pickup(floor int32, dir Direction) error {
+func (e *Elevator) Pickup(floor int32) error {
 	if floor < 1 || floor > topFloor {
 		return errors.New("Floor is above top floor")
 	}
 
 	e.GoalFloor = floor
-	e.Direction = dir
 
-	fmt.Printf("%d new goal: %s to %d\n", e.Id, e.Direction, e.GoalFloor)
+	fmt.Printf("%d new goal: %d\n", e.Id, e.GoalFloor)
 
 	return nil
 }
 
 func (e *Elevator) Step() {
-	switch e.Direction {
-	case Up:
+
+	if e.CurrentFloor == e.GoalFloor {
+		fmt.Printf("%d is at goal floor %d, not moving\n", e.Id, e.GoalFloor)
+	} else if e.CurrentFloor < e.GoalFloor {
 		e.up()
-	case Down:
+	} else {
 		e.down()
 	}
 }
@@ -53,7 +54,7 @@ func (e *Elevator) up() {
 
 	if e.CurrentFloor != e.GoalFloor {
 		e.CurrentFloor++
-		fmt.Printf("%d going %s : %d -> %d\n", e.Id, e.Direction, prevFloor, e.CurrentFloor)
+		fmt.Printf("%d going up: %d -> %d\n", e.Id, prevFloor, e.CurrentFloor)
 	} else {
 		fmt.Printf("%d is at goal floor %d, not moving\n", e.Id, e.GoalFloor)
 	}
@@ -64,7 +65,7 @@ func (e *Elevator) down() {
 
 	if e.CurrentFloor != e.GoalFloor {
 		e.CurrentFloor--
-		fmt.Printf("%d going %s : %d -> %d\n", e.Id, e.Direction, prevFloor, e.CurrentFloor)
+		fmt.Printf("%d going down: %d -> %d\n", e.Id, prevFloor, e.CurrentFloor)
 	} else {
 		fmt.Printf("%d is at goal floor %d, not moving\n", e.Id, e.GoalFloor)
 	}
