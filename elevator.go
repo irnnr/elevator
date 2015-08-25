@@ -1,5 +1,9 @@
 package main
 
+import (
+	"errors"
+)
+
 
 type Elevator struct {
 	Id int32
@@ -12,9 +16,15 @@ func (e Elevator) Status() (int32, int32, int32) {
 	return e.Id, e.CurrentFloor, e.GoalFloor
 }
 
-func (e *Elevator) Pickup(floor int32, dir Direction) {
+func (e *Elevator) Pickup(floor int32, dir Direction) error {
+	if floor > topFloor {
+		return errors.New("Floor is above top floor")
+	}
+
 	e.GoalFloor = floor
 	e.Direction = dir
+
+	return nil
 }
 
 func (e *Elevator) step() {
