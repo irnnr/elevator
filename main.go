@@ -60,6 +60,7 @@ func main() {
 	for {
 		moveElevators()
 		time.Sleep(time.Millisecond * 500)
+		setGoals()
 	}
 
 }
