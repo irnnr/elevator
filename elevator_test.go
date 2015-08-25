@@ -5,6 +5,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+func TestPickupSetsNewGoal(t *testing.T) {
+	topFloor = 100
+	el := Elevator{Id:int32(1) }
+	el.Pickup(50, Down)
+
+	assert.EqualValues(t, 50, el.GoalFloor)
+	assert.EqualValues(t, Down, el.Direction)
+}
+
 func TestPickupReturnsErrorForFloorPastMaxFloor(t *testing.T) {
 	topFloor = 100
 	el := Elevator{ Id:int32(1) }
@@ -48,3 +57,5 @@ func TestStepMovesElevatorOneFloorUpForDirectionUp(t *testing.T) {
 
 	assert.EqualValues(t, 2, el.CurrentFloor)
 }
+
+// TODO implement no movement test, current and goal floor equal
