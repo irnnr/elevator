@@ -59,7 +59,7 @@ func main() {
 
 	for {
 		moveElevators()
-		time.Sleep(time.Second)
+		time.Sleep(time.Millisecond * 500)
 	}
 
 }
