@@ -8,3 +8,6 @@ type Direction struct {
 var Up = Direction{ "up" }
 var Down = Direction{ "down" }
 
+func (d Direction) String() string {
+	return d.Direction
+}
